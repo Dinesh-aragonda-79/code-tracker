@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000;
 
 // CORS options
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://code-tracker-two.vercel.app/",
   methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
   credentials: true,
 };
