@@ -262,7 +262,7 @@ const CategoryDetail = () => {
   useEffect(() => {
     if (isLoggedIn && user) {
       axios
-        .get(`http://localhost:5000/api/problems/${categoryName}`, {
+        .get(`https://code-tracker-1.onrender.com/api/problems/${categoryName}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         })
         .then((response) => {
@@ -284,7 +284,7 @@ const CategoryDetail = () => {
     if (editIndex !== null) {
       const updatedProblem = { ...form, id: problems[editIndex]._id };
       axios
-        .put(`http://localhost:5000/api/problems/${updatedProblem.id}`, updatedProblem, {
+        .put(`https://code-tracker-1.onrender.com/api/problems/${updatedProblem.id}`, updatedProblem, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         })
         .then((response) => {
@@ -302,7 +302,7 @@ const CategoryDetail = () => {
     } else {
       axios
         .post(
-          'http://localhost:5000/api/problems',
+          'https://code-tracker-1.onrender.com/api/problems',
           { ...form, category: categoryName },
           {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
@@ -328,7 +328,7 @@ const CategoryDetail = () => {
   const handleDelete = (index) => {
     const problemId = problems[index]._id;
     axios
-      .delete(`http://localhost:5000/api/problems/${problemId}`, {
+      .delete(`https://code-tracker-1.onrender.com/problems/${problemId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       })
       .then(() => {
