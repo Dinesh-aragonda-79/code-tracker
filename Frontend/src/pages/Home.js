@@ -150,7 +150,7 @@ const Home = () => {
     <Hero>
       <div className="overlay">
         <img src={logo1} alt="Code Tracker Logo" />
-        {isLoggedIn ? <p>Welcome back, {user.username}!</p> : <p>Please log in to access more features.</p>}
+        {isLoggedIn ? <p>Welcome back!</p> : <p>Please log in to access more features.</p>}
         <h1>Track Code, Elevate Productivity</h1>
         <p>Explore a variety of coding problem categories and improve your skills.</p>
         <a href="/categories">
