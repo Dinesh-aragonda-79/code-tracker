@@ -15,7 +15,7 @@ const AuthProvider = ({ children }) => {
   // Function to check user Authentication
   const userAuthentication = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/auth/user', {
+      const response = await fetch('https://code-tracker-1.onrender.com/api/auth/user', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
