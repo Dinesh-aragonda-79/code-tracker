@@ -328,7 +328,7 @@ const CategoryDetail = () => {
   const handleDelete = (index) => {
     const problemId = problems[index]._id;
     axios
-      .delete(`https://code-tracker-1.onrender.com/problems/${problemId}`, {
+      .delete(`https://code-tracker-1.onrender.com/api/problems/${problemId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       })
       .then(() => {
