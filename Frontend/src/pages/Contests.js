@@ -121,7 +121,7 @@ const username = 'dinuargo79';
 const apiKey = 'ddef221077c15d57433783de3d8641aa1efb0884';
 
 async function fetchContests(resource) {
-  const url = `https://clist.by/api/v2/json/contest/?username=${username}&api_key=${apiKey}&resource=${resource}&limit=100`;
+  const url = `https://clist.by/api/v2/json/contest/?username=${username}&api_key=${apiKey}&resource=${resource}&limit=250`;
 
   try {
     const response = await fetch(url);
@@ -129,10 +129,19 @@ async function fetchContests(resource) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
+
+    // Calculate the date for 1 year ago
     const now = new Date();
-    const upcomingContests = data.objects.filter(contest => new Date(contest.start) > now);
-    upcomingContests.sort((a, b) => new Date(a.start) - new Date(b.start));
-    return upcomingContests.slice(0, 10).map(contest => ({
+    const lastYearDate = new Date();
+    lastYearDate.setFullYear(now.getFullYear() - 1); // Subtract one year
+
+    // Filter contests that started within the last year
+    const pastYearContests = data.objects.filter(contest => new Date(contest.start) >= lastYearDate);
+
+    // Sort contests by start date in descending order
+    pastYearContests.sort((a, b) => new Date(b.start) - new Date(a.start));
+
+    return pastYearContests.map(contest => ({
       id: contest.id,
       event: contest.event,
       start: new Date(contest.start).toLocaleString(),
@@ -144,6 +153,7 @@ async function fetchContests(resource) {
     return [];
   }
 }
+
 
 function Contests() {
   const [activeContestType, setActiveContestType] = useState('codeforces');
