@@ -82,7 +82,6 @@ const Input = styled.input`
   background-color: #2c2c2c;
   color: #e0e0e0;
   transition: border-color 0.3s;
-
   &:focus {
     border-color: #f0c14b;
   }
@@ -96,7 +95,6 @@ const TextArea = styled.textarea`
   background-color: #2c2c2c;
   color: #e0e0e0;
   transition: border-color 0.3s;
-
   &:focus {
     border-color: #f0c14b;
   }
@@ -110,7 +108,6 @@ const Select = styled.select`
   background-color: #2c2c2c;
   color: #e0e0e0;
   transition: border-color 0.3s;
-
   &:focus {
     border-color: #f0c14b;
   }
@@ -125,12 +122,10 @@ const Button = styled.button`
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease, transform 0.3s ease;
-
   &:hover {
     background-color: #f0a420;
     transform: translateY(-2px);
   }
-
   &:active {
     transform: translateY(0);
   }
@@ -163,16 +158,13 @@ const Td = styled.td`
   border: 1px solid #424242;
   text-align: left;
   color: #e0e0e0;
-
   a {
     color: #f0c14b;
     text-decoration: none;
-
     &:hover {
       text-decoration: underline;
     }
   }
-
   button {
     background: none;
     border: none;
@@ -180,7 +172,6 @@ const Td = styled.td`
     cursor: pointer;
     font-size: 16px;
     transition: color 0.3s;
-
     &:hover {
       color: #f0c14b;
     }
@@ -212,15 +203,12 @@ const Stats = styled.div`
 const StatItem = styled.p`
   margin: 5px 0;
   font-size: 18px;
-
   &.solved {
     color: #28a745;
   }
-
   &.unsolved {
     color: #dc3545;
   }
-
   &.attempted {
     color: #ffc107;
   }
@@ -262,7 +250,7 @@ const CategoryDetail = () => {
   useEffect(() => {
     if (isLoggedIn && user) {
       axios
-        .get(`http://localhost:5000/api/problems/${categoryName}`, {
+        .get(`https://code-tracker-1.onrender.com/api/problems/${categoryName}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         })
         .then((response) => {
@@ -284,7 +272,7 @@ const CategoryDetail = () => {
     if (editIndex !== null) {
       const updatedProblem = { ...form, id: problems[editIndex]._id };
       axios
-        .put(`http://localhost:5000/api/problems/${updatedProblem.id}`, updatedProblem, {
+        .put(`https://code-tracker-1.onrender.com/api/problems/${updatedProblem.id}`, updatedProblem, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         })
         .then((response) => {
@@ -302,7 +290,7 @@ const CategoryDetail = () => {
     } else {
       axios
         .post(
-          'http://localhost:5000/api/problems',
+          'https://code-tracker-1.onrender.com/api/problems',
           { ...form, category: categoryName },
           {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
@@ -328,7 +316,7 @@ const CategoryDetail = () => {
   const handleDelete = (index) => {
     const problemId = problems[index]._id;
     axios
-      .delete(`http://localhost:5000/api/problems/${problemId}`, {
+      .delete(`https://code-tracker-1.onrender.com/api/problems/${problemId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       })
       .then(() => {
